@@ -170,9 +170,15 @@ Anything in parenthesis (including the parenthesis themselves) are removed from 
 
 ## Usage
 
-    $(selector).tal(bindings);
+Include the script:
+
+    <script src="lib/jqtal.js"></script>
 
 To "render" a template, call the `tal()` function on a jQuery object, passing in the bindings, e.g.:
+
+    $(selector).tal(bindings);
+
+Example:
 
     var foo = {bar: 'baz'};
     $('body').tal(foo);
