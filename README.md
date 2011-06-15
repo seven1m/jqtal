@@ -78,7 +78,7 @@ Other TAL attributes may also affect the current scope, e.g. `data-repeat` (expl
 
 ### Content
 
-**Replace** the content (if any) of the tag.
+**Replace** the content (if any) of the tag, but leave the tag itself.
 
     <div data-content="bar"/>
 
