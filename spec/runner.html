@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+  <title>jqTAL Jasmine Suite</title>
+  <link rel="stylesheet" href="support/jasmine.css" type="text/css" media="screen"/>
+
+  <script src="support/jquery-1.6.1.min.js" type="text/javascript"></script>
+  <script src="support/jasmine.js" type="text/javascript"></script>
+  <script src="support/jasmine-html.js" type="text/javascript"></script>
+  <script src="helper.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    var jsApiReporter;
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+
+      jsApiReporter = new jasmine.JsApiReporter();
+      var trivialReporter = new jasmine.TrivialReporter();
+
+      jasmineEnv.addReporter(jsApiReporter);
+      jasmineEnv.addReporter(trivialReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return trivialReporter.specFilter(spec);
+      };
+
+      window.onload = function() {
+        jasmineEnv.execute();
+      };
+    })();
+  </script>
+
+  <script src="../lib/jqtal.js" type="text/javascript"></script>
+  <script src="jqtal_spec.js" type="text/javascript"></script>
+</head>
+<body>
+  <div id="main"></div>
+</body>
+</html>
