@@ -35,6 +35,30 @@ describe("jqtal", function() {
     });
   });
 
+  describe("data-attr", function() {
+    beforeEach(function() {
+      tmpl("<span data-attr='id=foo'/>");
+    });
+
+    it("sets the specified attribute of the element", function() {
+      $('#main').tal({foo: 'bar'});
+      expect($('#main span').attr('id')).toEqual('bar');
+    });
+  });
+
+  describe("data-val", function() {
+    describe("given an input field", function() {
+      beforeEach(function() {
+        tmpl("<input data-val='foo'/>");
+      });
+
+      it("sets the value attribute of the field", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main input').val()).toEqual('bar');
+      });
+    });
+  });
+
   describe("resolve method", function() {
     it("returns the value of a property", function() {
       var value = $().tal('resolve', 'bar', [{bar: 'baz'}, {foo: {bar: 'baz'}}]);
