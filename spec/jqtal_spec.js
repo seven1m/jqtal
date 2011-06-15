@@ -57,6 +57,54 @@ describe("jqtal", function() {
         expect($('#main input').val()).toEqual('bar');
       });
     });
+
+    describe("given a select field", function() {
+      beforeEach(function() {
+        tmpl("<select data-val='foo'><option></option><option value='baz'>baz</option><option value='bar'>bar</option></select>");
+      });
+
+      it("selects the appropriate option", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main select').val()).toEqual('bar');
+      });
+    });
+
+    describe("given a textarea", function() {
+      beforeEach(function() {
+        tmpl("<textarea data-val='foo'></textarea>");
+      });
+
+      it("sets the value of the textarea", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main textarea').val()).toEqual('bar');
+      });
+    });
+
+    describe("given a checkbox", function() {
+      beforeEach(function() {
+        tmpl("<input type='checkbox' value='bar' data-val='foo'/>");
+      });
+
+      it("checks the box if the value matches", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main input').attr('checked')).toBeTruthy();
+        $('#main').tal({foo: 'baz'});
+        expect($('#main input').attr('checked')).not.toBeTruthy();
+      });
+    });
+
+    describe("given a radio button", function() {
+      beforeEach(function() {
+        tmpl("<input type='radio' name='foo' value='bar' data-val='foo'/>");
+      });
+
+      it("checks the box if the value matches", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main input').attr('checked')).toBeTruthy();
+        $('#main').tal({foo: 'baz'});
+        expect($('#main input').attr('checked')).not.toBeTruthy();
+      });
+    });
   });
 
   describe("resolve method", function() {
