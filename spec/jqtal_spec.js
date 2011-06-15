@@ -11,18 +11,27 @@ describe("jqTAL", function() {
     });
   });
 
-  describe("data-scope", function() {
-    
-  });
-
   describe("data-content", function() {
-    beforeEach(function() {
-      tmpl("<span data-content='foo'/>");
+    describe("given a simple instruction", function() {
+      beforeEach(function() {
+        tmpl("<span data-content='foo'/>");
+      });
+
+      it("sets the content of the element", function() {
+        $('#main').tal({foo: 'bar'});
+        expect($('#main span').html()).toEqual('bar');
+      });
     });
 
-    it("sets the content of the element", function() {
-      $('#main').tal({foo: 'bar'});
-      expect($('#main span').html()).toEqual('bar');
+    describe("given a complex instruction", function() {
+      beforeEach(function() {
+        tmpl("<span data-content='foo/bar'/>");
+      });
+
+      it("sets the content of the element", function() {
+        $('#main').tal({foo: {bar: 'baz'}});
+        expect($('#main span').html()).toEqual('baz');
+      });
     });
   });
 
@@ -51,6 +60,13 @@ describe("jqTAL", function() {
       var value = $().tal('resolve', '/bar', ['1', {foo: '1', bar: '2'}]);
       expect(value).toEqual('2');
     });
+
+    it("does not modify the passed scope by default", function() {
+      var scope = [{foo: '1'}];
+      var value = $().tal('resolve', 'foo', scope);
+      expect(scope).toEqual([{foo: '1'}]);
+    });
+
   });
 
   describe("scope method", function() {
