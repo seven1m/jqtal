@@ -1,10 +1,8 @@
 # jqtal
 
-JavaScript Template Attribute Language
+jQuery Template Attribute Language
 
-Built specifically for Backbone.js and jQuery (but should also be useful sans Backbone).
-
-Inspired by Zope TAL [link](link).
+Built specifically to complement Backbone.js (but should also be useful sans Backbone).
 
 
 ## Example Usage
@@ -203,5 +201,32 @@ WRITE ME
 
 **How do I replace or omit a tag in the output?**
 
-You can't, unfortunately. Because jqtal doesn't really "output" HTML -- it more-so "decorates" it -- there are no TAL instructions that might cause an instruction to disappear from the DOM, which would cause subsequent updates to fail.
+You can't. Because jqtal doesn't really "output" HTML -- it more-so "decorates" it -- there are no TAL instructions that might cause an instruction to disappear from the DOM, which would cause subsequent updates to fail.
 
+
+## Credits
+
+jqtal was inspired by Zope's [TAL](http://wiki.zope.org/ZPT/TAL), one of the few good things to come out of Zope.
+
+
+## Copyright & Disclaimer
+
+Copyright (C) 2011 by Tim Morgan and TJRM, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
