@@ -1,4 +1,4 @@
-# jqTAL
+# jqtal
 
 JavaScript Template Attribute Language
 
@@ -28,7 +28,7 @@ Inspired by Zope TAL [link](link).
 
 ## Goals
 
-* jqTAL uses HTML5 `data-` prefixed custom attributes instead of custom syntax.
+* jqtal uses HTML5 `data-` prefixed custom attributes instead of custom syntax.
 * Template `data-` attributes are *not* removed from the rendered HTML.
 * The same DOM elements and template language can be reused over and over again without re-rendering the HTML.
 * *No* JavaScript eval within the template itself.
@@ -38,7 +38,7 @@ Inspired by Zope TAL [link](link).
 
 ### Scopes
 
-Everything in jqTAL must be interpreted in the context of an active "scope". In all cases, the current scope will be a JavaScript object of some sort.
+Everything in jqtal must be interpreted in the context of an active "scope". In all cases, the current scope will be a JavaScript object of some sort.
 
 One way to set the scope is to use the `data-scope` attribute:
 
@@ -56,7 +56,7 @@ You may nest scopes, but be aware the child scope will itself be evaluated in th
       </div>
     </div>
 
-...in this example, jqTAL looks for `parentObject['childObject']`.
+...in this example, jqtal looks for `parentObject['childObject']`.
 
 If instead you need to reference a parent or top-level object, you may use `../` or `/` respectively. For example:
 
@@ -151,7 +151,7 @@ Some explanation is probably necessary:
 * `../name` grabs the "name" attribute of the parent scope (the state).
 * `../../name` grabs the "name" attribute of the grandparent scope (the country).
 
-With multiple references to a similarly named attribute on objects in various scopes (current, parent, grandparent, etc.), templates can get hard to read. So, jqTAL has a way to annotate instructions for clarity; the above can be rewritten as:
+With multiple references to a similarly named attribute on objects in various scopes (current, parent, grandparent, etc.), templates can get hard to read. So, jqtal has a way to annotate instructions for clarity; the above can be rewritten as:
 
     <div data-scope="country">
       <div data-repeat="states">
@@ -183,18 +183,18 @@ Example:
     var foo = {bar: 'baz'};
     $('body').tal(foo);
 
-In this example, everything within the `<body>` element is considered part of the jqTAL template.
+In this example, everything within the `<body>` element is considered part of the jqtal template.
 
 Any object you pass to `tal()` is made available to the template. It's also common to wrap several objects in a single parent object, e.g. `{foo: foo, bar: bar}`.
 
 
 ## Re-Rendering
 
-jqTAL is especially useful for updating the same template repeatedly, without recreating all the DOM elements each time. Here are some things to note:
+jqtal is especially useful for updating the same template repeatedly, without recreating all the DOM elements each time. Here are some things to note:
 
 ### data-repeat
 
-Loops are a bit tricky. Here is the logic jqTAL follows when rendering a `data-repeat` block:
+Loops are a bit tricky. Here is the logic jqtal follows when rendering a `data-repeat` block:
 
 WRITE ME
 
@@ -203,5 +203,5 @@ WRITE ME
 
 **How do I replace or omit a tag in the output?**
 
-You can't, unfortunately. Because jqTAL doesn't really "output" HTML -- it more-so "decorates" it -- there are no TAL instructions that might cause an instruction to disappear from the DOM, which would cause subsequent updates to fail.
+You can't, unfortunately. Because jqtal doesn't really "output" HTML -- it more-so "decorates" it -- there are no TAL instructions that might cause an instruction to disappear from the DOM, which would cause subsequent updates to fail.
 

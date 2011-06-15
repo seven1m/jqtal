@@ -1,4 +1,4 @@
-describe("jqTAL", function() {
+describe("jqtal", function() {
 
   describe("tal()", function() {
     it("is a function", function() {
