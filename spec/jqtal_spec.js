@@ -58,7 +58,7 @@ describe("jqTAL", function() {
       var binding;
 
       beforeEach(function() {
-        $('#main').html('<span/>');
+        tmpl('<span/>');
         binding = {foo: 'bar'};
       });
 
@@ -72,7 +72,7 @@ describe("jqTAL", function() {
       var binding;
 
       beforeEach(function() {
-        $('#main').html('<div data-scope="foo"><span/></div>');
+        tmpl('<div data-scope="foo"><span/></div>');
         binding = {foo: {bar: 'baz'}};
       });
 
@@ -86,7 +86,7 @@ describe("jqTAL", function() {
       var binding;
 
       beforeEach(function() {
-        $('#main').html('<div data-scope="foo"><div data-scope="bar"><span/></div></div>');
+        tmpl('<div data-scope="foo"><div data-scope="bar"><span/></div></div>');
         binding = {foo: {bar: 'baz'}};
       });
 
@@ -100,16 +100,16 @@ describe("jqTAL", function() {
       var binding;
 
       beforeEach(function() {
-        $('#main').html('<div data-scope="foo">' +
-                        '  <div data-scope="bar">' +
-                        '    <div data-scope="..">' +
-                        '      <div data-scope="baz">' +
-                        '        <span/>' +
-                        '      </div>' +
-                        '    </div>' +
-                        '  </div>' +
-                        '</div>'
-                       );
+        tmpl('<div data-scope="foo">' +
+             '  <div data-scope="bar">' +
+             '    <div data-scope="..">' +
+             '      <div data-scope="baz">' +
+             '        <span/>' +
+             '      </div>' +
+             '    </div>' +
+             '  </div>' +
+             '</div>'
+            );
         binding = {
           foo: {
             bar: {
@@ -130,14 +130,14 @@ describe("jqTAL", function() {
       var binding;
 
       beforeEach(function() {
-        $('#main').html('<div data-scope="foo">' +
-                        '  <div data-scope="bar">' +
-                        '    <div data-scope="/baz">' +
-                        '      <span/>' +
-                        '    </div>' +
-                        '  </div>' +
-                        '</div>'
-                       );
+        tmpl('<div data-scope="foo">' +
+             '  <div data-scope="bar">' +
+             '    <div data-scope="/baz">' +
+             '      <span/>' +
+             '    </div>' +
+             '  </div>' +
+             '</div>'
+            );
         binding = {
           foo: {
             bar: '1'
