@@ -652,6 +652,10 @@ jasmine.util.formatException = function(e) {
     message += ' in ' + file + ' (line ' + lineNumber + ')';
   }
 
+  if (e.stack) {
+    message += "\n" + e.stack + "\n";
+  }
+
   return message;
 };
 
