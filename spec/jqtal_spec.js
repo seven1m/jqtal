@@ -218,6 +218,18 @@ describe("jqtal", function() {
   });
 
   describe("resolve method", function() {
+    it("returns the value of calling a property that's a function", function() {
+      var value = $().tal('resolve', 'foo', [{foo: function() { return 'bar' }}]);
+      expect(value).toEqual('bar');
+    });
+
+    it("returns the value of calling get() on the scoped object", function() {
+      var scopeObj = {get: jasmine.createSpy('get').andReturn('bar')};
+      var value = $().tal('resolve', 'foo', [scopeObj]);
+      expect(value).toEqual('bar');
+      expect(scopeObj.get).toHaveBeenCalledWith('foo');
+    });
+
     it("returns the value of a property", function() {
       var value = $().tal('resolve', 'bar', [{bar: 'baz'}, {foo: {bar: 'baz'}}]);
       expect(value).toEqual('baz');
