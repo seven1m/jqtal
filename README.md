@@ -28,8 +28,28 @@ Built specifically to complement Backbone.js (but should also be useful sans Bac
 
 * jqtal uses HTML5 `data-` prefixed custom attributes instead of custom syntax.
 * Template `data-` attributes are *not* removed from the rendered HTML.
-* The same DOM elements and template language can be reused over and over again without re-rendering the HTML.
+* The same DOM elements and template instructions are reused for each call to `tal()` without re-rendering all the HTML.
 * *No* JavaScript eval within the template itself.
+
+
+## Usage
+
+Include the script:
+
+    <script src="lib/jqtal.js"></script>
+
+To "render" a template, call the `tal()` function on a jQuery object, passing in the bindings, e.g.:
+
+    $(selector).tal(bindings);
+
+Example:
+
+    var foo = {bar: 'baz'};
+    $('body').tal(foo);
+
+In this example, everything within the `<body>` element is considered part of the jqtal template.
+
+Any object you pass to `tal()` is made available to the template. It's also common to wrap several objects in a single parent object, e.g. `{foo: foo, bar: bar}`.
 
 
 ## Syntax
@@ -164,37 +184,6 @@ With multiple references to a similarly named attribute on objects in various sc
     </div>
 
 Anything in parenthesis (including the parenthesis themselves) are removed from the instruction before evaluation, so the annotations are only there for helping humans.
-
-
-## Usage
-
-Include the script:
-
-    <script src="lib/jqtal.js"></script>
-
-To "render" a template, call the `tal()` function on a jQuery object, passing in the bindings, e.g.:
-
-    $(selector).tal(bindings);
-
-Example:
-
-    var foo = {bar: 'baz'};
-    $('body').tal(foo);
-
-In this example, everything within the `<body>` element is considered part of the jqtal template.
-
-Any object you pass to `tal()` is made available to the template. It's also common to wrap several objects in a single parent object, e.g. `{foo: foo, bar: bar}`.
-
-
-## Re-Rendering
-
-jqtal is especially useful for updating the same template repeatedly, without recreating all the DOM elements each time. Here are some things to note:
-
-### data-repeat
-
-Loops are a bit tricky. Here is the logic jqtal follows when rendering a `data-repeat` block:
-
-WRITE ME
 
 
 ## FAQs
