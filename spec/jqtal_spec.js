@@ -107,6 +107,116 @@ describe("jqtal", function() {
     });
   });
 
+  describe("data-repeat", function() {
+    beforeEach(function() {
+      tmpl("<div data-repeat='people' data-attr='class=.'><span data-content='.'/></div>");
+    });
+
+    describe("given a single item", function() {
+      beforeEach(function() {
+        $('#main').tal({people: ['Jean-Luc']});
+      });
+
+      it("leaves the single div", function() {
+        expect($('#main div').length).toEqual(1);
+      });
+
+      it("scopes instructions on the element itself to the indexed item", function() {
+        expect($('#main div')).toHaveClass('Jean-Luc');
+      });
+
+      it("scopes instructions on children of the element to the indexed item", function() {
+        expect($('#main div span').html()).toEqual('Jean-Luc');
+      });
+    });
+
+    describe("given two items", function() {
+      beforeEach(function() {
+        $('#main').tal({people: ['Jean-Luc', 'William']});
+      });
+
+      it("duplicates the div", function() {
+        expect($('#main div').length).toEqual(2);
+      });
+
+      it("scopes instructions on both elements to the indexed item", function() {
+        expect($('#main div').eq(0)).toHaveClass('Jean-Luc');
+        expect($('#main div').eq(1)).toHaveClass('William');
+      });
+
+      it("scopes instructions on children of the elements to the indexed item", function() {
+        expect($('#main div span').eq(0).html()).toEqual('Jean-Luc');
+        expect($('#main div span').eq(1).html()).toEqual('William');
+      });
+    });
+
+    describe("given three items", function() {
+      beforeEach(function() {
+        $('#main').tal({people: ['Jean-Luc', 'William', 'Deanna']});
+      });
+
+      it("duplicates the div twice", function() {
+        expect($('#main div').length).toEqual(3);
+      });
+
+      it("scopes instructions on all elements to the indexed item", function() {
+        expect($('#main div').eq(0)).toHaveClass('Jean-Luc');
+        expect($('#main div').eq(1)).toHaveClass('William');
+        expect($('#main div').eq(2)).toHaveClass('Deanna');
+      });
+
+      it("scopes instructions on children of the elements to the indexed item", function() {
+        expect($('#main div span').eq(0).html()).toEqual('Jean-Luc');
+        expect($('#main div span').eq(1).html()).toEqual('William');
+        expect($('#main div span').eq(2).html()).toEqual('Deanna');
+      });
+    });
+
+    describe("given a second pass with one less item", function() {
+      beforeEach(function() {
+        $('#main').tal({people: ['Jean-Luc', 'William', 'Deanna']});
+        $('#main').tal({people: ['Jean-Luc', 'William']});
+      });
+
+      it("removes one of divs", function() {
+        expect($('#main div').length).toEqual(2);
+      });
+
+      it("scopes instructions on both remaining elements to the indexed item", function() {
+        expect($('#main div').eq(0)).toHaveClass('Jean-Luc');
+        expect($('#main div').eq(1)).toHaveClass('William');
+      });
+
+      it("scopes instructions on children of the remaining elements to the indexed item", function() {
+        expect($('#main div span').eq(0).html()).toEqual('Jean-Luc');
+        expect($('#main div span').eq(1).html()).toEqual('William');
+      });
+    });
+
+    describe("given a second pass with one more item", function() {
+      beforeEach(function() {
+        $('#main').tal({people: ['Jean-Luc', 'William']});
+        $('#main').tal({people: ['Jean-Luc', 'William', 'Deanna']});
+      });
+
+      it("removes one of divs", function() {
+        expect($('#main div').length).toEqual(3);
+      });
+
+      it("scopes instructions on all elements to the indexed item", function() {
+        expect($('#main div').eq(0)).toHaveClass('Jean-Luc');
+        expect($('#main div').eq(1)).toHaveClass('William');
+        expect($('#main div').eq(2)).toHaveClass('Deanna');
+      });
+
+      it("scopes instructions on children of the elements to the indexed item", function() {
+        expect($('#main div span').eq(0).html()).toEqual('Jean-Luc');
+        expect($('#main div span').eq(1).html()).toEqual('William');
+        expect($('#main div span').eq(2).html()).toEqual('Deanna');
+      });
+    });
+  });
+
   describe("resolve method", function() {
     it("returns the value of a property", function() {
       var value = $().tal('resolve', 'bar', [{bar: 'baz'}, {foo: {bar: 'baz'}}]);
@@ -131,6 +241,11 @@ describe("jqtal", function() {
     it("translates /", function() {
       var value = $().tal('resolve', '/bar', ['1', {foo: '1', bar: '2'}]);
       expect(value).toEqual('2');
+    });
+
+    it("translates array indexes", function() {
+      var value = $().tal('resolve', 'foo/1', [{foo: ['0', '1']}]);
+      expect(value).toEqual('1');
     });
 
     it("does not modify the passed scope by default", function() {
@@ -239,6 +354,20 @@ describe("jqtal", function() {
       it("returns a scope with only objects following the root instruction", function() {
         var scope = $().tal('scope', $('#main span'), binding);
         expect(scope).toEqual([binding.baz, binding]);
+      });
+    });
+
+    describe("given an element with a single parent repeat instruction", function() {
+      var binding;
+
+      beforeEach(function() {
+        tmpl('<div data-repeat="foos"><span/></div>');
+        binding = {foos: [{bar: 'baz'}]};
+      });
+
+      it("returns a scope with the original binding and the object specified by the iteration of the repeat instruction", function() {
+        var scope = $().tal('scope', $('#main span'), binding);
+        expect(scope).toEqual([binding.foos[0], binding.foos, binding]);
       });
     });
   });
