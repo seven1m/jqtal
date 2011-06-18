@@ -1,0 +1,115 @@
+<!--
+  <h1>Edit <span data-content="name">Eddie Valiant</span></h1>
+
+  <form>
+    <input name="first_name" data-val="first_name"/>
+    <input name="last_name" data-val="last_name"/>
+    <input name="birthday" data-val="js: format_date(prop('birthday'))"/>
+
+    <div class="address" data-repeat="addresses">
+      <select name="description" data-val="description">
+        <option value="home">home</option>
+        <option value="work">work</option>
+      </select>
+      <input name="line1" data-val="line1"/>
+      <input name="line2" data-val="line2"/>
+      <input name="city"  data-val="city" />
+      <input name="state" data-val="state"/>
+      <input name="zip"   data-val="zip"  />
+    </div>
+  </form>
+
+  <script>
+    $('body').tal(person);
+  </script>
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>jqtal - jQuery Template Attribute Language</title>
+    <link href="http://fonts.googleapis.com/css?family=Rokkitt:regular" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+      * {
+        margin: 0; padding: 0;
+      }
+      html, body {
+        height: 100%;
+      }
+      body  {
+        font-family: Helvetica, Arial, sans-serif;
+        background: #eee8d5;
+      }
+      #main {
+        width: 700px;
+        margin: 50px auto;
+      }
+      #footer {
+        clear: left;
+        text-align: center;
+        font-size: 11pt;
+        margin-top: 100px;
+        line-height: 18pt;
+      }
+      h1 {
+        font-family: 'Rokkitt', 'Times New Roman', serif;
+        font-size: 48pt;
+        font-weight: normal;
+        margin-bottom: 50px;
+        text-align: center;
+        color: #cb4b16;
+      }
+      h2 {
+        font-family: 'Rokkitt', 'Times New Roman', serif;
+        font-size: 18pt;
+        color: #d79915;
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 30px;
+      }
+      p {
+        text-align: center;
+        font-size: 12pt;
+        margin-bottom: 50px;
+      }
+      a {
+        color: #268bd5;
+      }
+      .no-decoration a {
+        text-decoration: none;
+      }
+    </style>
+  </head> 
+  <body>
+    <div id="main">
+      <h1>jqtal</h1>
+      <h2>jQuery Template Attribute Language</h2>
+      <p><img src="example.png"/></p>
+      <p>
+        Decorate HTML with <code>data-</code> attributes and discover template happiness! <3 <3 <3
+      </p>
+      <p class="no-decoration">
+        <a href="http://github.com/seven1m/jqtal" title="GitHub">
+          <img border="0" width="90" src="readme.png"/>
+        </a>
+        <a href="http://github.com/seven1m/jqtal/zipball/master" title="Zip Download"> 
+          <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"/>
+        </a>
+        <a href="http://github.com/seven1m/jqtal/tarball/master" title="Tarball Download"> 
+          <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"/>
+        </a>
+      </p>
+      <p class="no-decoration">
+        Made available under MIT license from<br/>
+        <a href="http://church.io">Church.IO &mdash; engage your church.</a>
+      </p>
+      <div id="footer">
+        <a href="mailto:tim@church.io">tim@church.io</a>
+        &middot;
+        <a href="http://timmorgan.org">timmorgan.org</a>
+      </div>
+    </div>
+    <a href="http://github.com/seven1m/jqtal"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+  </body>
+</html>
