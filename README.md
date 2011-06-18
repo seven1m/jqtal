@@ -54,6 +54,28 @@ Any object you pass to `tal()` is made available to the template. It's also comm
 
 ## Syntax
 
+### Instructions
+
+"Instructions" are what you put inside the `data-` attributes that tell jqtal what to do. In most cases, you'll use a single identifier, such as `first_name` -- this will cause the "first\_name" property of an object to be used as the value for whatever you wish to do. For example:
+
+    <div data-content="first_name"/>
+
+...will insert the "first\_name" property of whatever object is in "scope" (read about scopes below) as the text content of the `div` tag.
+
+Further, you can use slash notation to grab an property within a property, like so:
+
+    <div data-content="birthday/getFullYear"/>
+
+jqtal is smart enough to know that "birthday" is an object itself, and that `getFullYear` is actually a function, which should be called.
+
+If you absolutely must, you can even execute JavaScript as an instruction:
+
+    <div data-content="js: var d = prop('birthday');
+                           return (d instanceof Date) ? format_date(d) : 'unknown';"/>
+
+(The `return` is necessary since the JavaScript gets wrapped in a function.)
+
+
 ### Scopes
 
 Everything in jqtal must be interpreted in the context of an active "scope". In all cases, the current scope will be a JavaScript object of some sort.
