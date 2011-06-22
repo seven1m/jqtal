@@ -271,6 +271,11 @@ describe("jqtal", function() {
       expect(scope).toEqual([{foo: '1'}]);
     });
 
+    it("ignores anything inside parentheses", function() {
+      var value = $().tal('resolve', 'foo/(bar)baz', [{foo: {bar: 1, baz: 2}}]);
+      expect(value).toEqual(2);
+    });
+
   });
 
   describe("scope method", function() {
