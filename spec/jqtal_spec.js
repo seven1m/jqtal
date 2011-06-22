@@ -265,6 +265,11 @@ describe("jqtal", function() {
       expect(value).toEqual(5);
     });
 
+    it("runs javascript that contains a slash /", function() {
+      var value = $().tal('resolve', 'js: return 10 / 2', [{}]);
+      expect(value).toEqual(5);
+    });
+
     it("does not modify the passed scope by default", function() {
       var scope = [{foo: '1'}];
       var value = $().tal('resolve', 'foo', scope);
