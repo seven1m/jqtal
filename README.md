@@ -1,8 +1,6 @@
-# jqtal
+# jqtal - jQuery Template Attribute Language
 
-jQuery Template Attribute Language
-
-Built specifically to complement Backbone.js (but should also be useful sans Backbone).
+A jQuery plugin for doing client side HTML templates.
 
 
 ## Example Usage
