@@ -29,7 +29,6 @@ Built specifically to complement Backbone.js (but should also be useful sans Bac
 * jqtal uses HTML5 `data-` prefixed custom attributes instead of custom syntax.
 * Template `data-` attributes are *not* removed from the rendered HTML.
 * The same DOM elements and template instructions are reused for each call to `tal()` without re-rendering all the HTML.
-* *No* JavaScript eval within the template itself.
 
 
 ## Usage
